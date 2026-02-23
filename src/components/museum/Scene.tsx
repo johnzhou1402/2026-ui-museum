@@ -305,7 +305,7 @@ const FIXTURE_Y = ROOM_HEIGHT - 0.02 - 0.36
 function SceneContent({ wallIndex, onPieceClick, modalOpen }: SceneContentProps) {
   const lightW = FRAME_WIDTH + 0.5
   const lightH = FRAME_HEIGHT + 0.5
-  const lightIntensity = 8
+  const lightIntensity = 5
   const lightColor = "#fff5e0"
 
   return (
@@ -313,10 +313,10 @@ function SceneContent({ wallIndex, onPieceClick, modalOpen }: SceneContentProps)
       <CameraController wallIndex={wallIndex} />
 
       {/* Ambient — very low for dramatic lighting contrast */}
-      <ambientLight intensity={0.15} />
+      <ambientLight intensity={0.08} />
 
       {/* Subtle warm overhead fill */}
-      <pointLight position={[0, 4.5, 0]} intensity={3} distance={14} color="#fff5e6" />
+      <pointLight position={[0, 4.5, 0]} intensity={1.5} distance={14} color="#fff5e6" />
 
       {/* RectAreaLights — rectangular projection on walls */}
       <PaintingLight

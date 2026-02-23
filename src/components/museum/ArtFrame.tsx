@@ -119,32 +119,6 @@ export function ArtFrame({ piece, onClick, hideHtml }: Props) {
               draggable={false}
             />
           )}
-          {hovered && (
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(0,0,0,0.15)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <span
-                style={{
-                  color: "white",
-                  fontSize: "14px",
-                  fontWeight: 500,
-                  padding: "6px 16px",
-                  background: "rgba(0,0,0,0.5)",
-                  borderRadius: "20px",
-                  backdropFilter: "blur(4px)",
-                }}
-              >
-                View
-              </span>
-            </div>
-          )}
         </div>
       </Html>}
 
