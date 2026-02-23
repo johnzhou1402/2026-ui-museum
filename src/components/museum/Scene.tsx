@@ -12,6 +12,7 @@ import { collection, type ArtPiece } from "@/data/collection"
 type SceneContentProps = {
   wallIndex: number
   onPieceClick: (piece: ArtPiece) => void
+  modalOpen: boolean
 }
 
 // ── RectAreaLight ──────────────────────────────────────────────────────
@@ -301,7 +302,7 @@ const FIXTURE_Y = ROOM_HEIGHT - 0.02 - 0.36
 
 // ── Scene content ──────────────────────────────────────────────────────
 
-function SceneContent({ wallIndex, onPieceClick }: SceneContentProps) {
+function SceneContent({ wallIndex, onPieceClick, modalOpen }: SceneContentProps) {
   const lightW = FRAME_WIDTH + 0.5
   const lightH = FRAME_HEIGHT + 0.5
   const lightIntensity = 8
@@ -375,7 +376,7 @@ function SceneContent({ wallIndex, onPieceClick }: SceneContentProps) {
       <Room />
 
       {collection.map((piece) => (
-        <ArtFrame key={piece.id} piece={piece} onClick={() => onPieceClick(piece)} />
+        <ArtFrame key={piece.id} piece={piece} onClick={() => onPieceClick(piece)} hideHtml={modalOpen} />
       ))}
 
       {/* Postprocessing */}
@@ -387,9 +388,10 @@ function SceneContent({ wallIndex, onPieceClick }: SceneContentProps) {
 type MuseumSceneProps = {
   wallIndex: number
   onPieceClick: (piece: ArtPiece) => void
+  modalOpen: boolean
 }
 
-export function MuseumScene({ wallIndex, onPieceClick }: MuseumSceneProps) {
+export function MuseumScene({ wallIndex, onPieceClick, modalOpen }: MuseumSceneProps) {
   return (
     <Canvas
       camera={{ position: [0, EYE_HEIGHT, 0], fov: 60, near: 0.1, far: 100 }}
@@ -407,7 +409,7 @@ export function MuseumScene({ wallIndex, onPieceClick }: MuseumSceneProps) {
         gl.shadowMap.type = THREE.PCFSoftShadowMap
       }}
     >
-      <SceneContent wallIndex={wallIndex} onPieceClick={onPieceClick} />
+      <SceneContent wallIndex={wallIndex} onPieceClick={onPieceClick} modalOpen={modalOpen} />
     </Canvas>
   )
 }

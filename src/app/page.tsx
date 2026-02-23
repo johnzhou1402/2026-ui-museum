@@ -38,7 +38,7 @@ export default function Home() {
           </div>
         }
       >
-        <MuseumScene wallIndex={wallIndex} onPieceClick={setSelectedPiece} />
+        <MuseumScene wallIndex={wallIndex} onPieceClick={setSelectedPiece} modalOpen={!!selectedPiece} />
       </Suspense>
 
       {/* UI Overlays */}

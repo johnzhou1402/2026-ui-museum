@@ -8,6 +8,7 @@ import { ROOM_WIDTH, ROOM_DEPTH, ROOM_HEIGHT } from "./Room"
 type Props = {
   piece: ArtPiece
   onClick: () => void
+  hideHtml?: boolean
 }
 
 export const FRAME_WIDTH = 4
@@ -43,7 +44,7 @@ function getWallRotation(wall: ArtPiece["wall"]): [number, number, number] {
   }
 }
 
-export function ArtFrame({ piece, onClick }: Props) {
+export function ArtFrame({ piece, onClick, hideHtml }: Props) {
   const [hovered, setHovered] = useState(false)
 
   const position = getWallPosition(piece.wall)
@@ -64,7 +65,7 @@ export function ArtFrame({ piece, onClick }: Props) {
       </mesh>
 
       {/* Art — HTML overlay only, no mesh underneath */}
-      <Html
+      {!hideHtml && <Html
         position={[0, 0, FRAME_DEPTH / 2 + 0.005]}
         transform
         distanceFactor={4.5}
@@ -145,7 +146,7 @@ export function ArtFrame({ piece, onClick }: Props) {
             </div>
           )}
         </div>
-      </Html>
+      </Html>}
 
       {/* Label plate */}
       <mesh position={[0, -(FRAME_HEIGHT / 2 + BORDER + 0.2), FRAME_DEPTH / 2]}>
