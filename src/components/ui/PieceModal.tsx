@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { type ArtPiece } from "@/data/collection"
+import { useTypewriter } from "@/hooks/useTypewriter"
 
 type Props = {
   piece: ArtPiece | null
@@ -17,6 +18,8 @@ export function PieceModal({ piece, onClose }: Props) {
     window.addEventListener("keydown", handler)
     return () => window.removeEventListener("keydown", handler)
   }, [piece, onClose])
+
+  const { displayed, done } = useTypewriter(piece?.description ?? "", 30)
 
   if (!piece) return null
 
@@ -75,7 +78,12 @@ export function PieceModal({ piece, onClose }: Props) {
           {/* Info panel */}
           <div className="p-6">
             <h2 className="text-xl font-semibold text-white/90 mb-2">{piece.title}</h2>
-            <p className="text-sm text-white/50 leading-relaxed mb-4">{piece.description}</p>
+            {piece.description && (
+              <p className="text-sm text-white/50 leading-relaxed mb-4 font-mono">
+                {displayed}
+                {!done && <span className="inline-block w-[2px] h-[14px] bg-white/50 ml-[1px] align-middle animate-pulse" />}
+              </p>
+            )}
             <a
               href={piece.source}
               target="_blank"

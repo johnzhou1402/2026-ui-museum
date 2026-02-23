@@ -1,12 +1,15 @@
 "use client"
 
 import { type ArtPiece } from "@/data/collection"
+import { useTypewriter } from "@/hooks/useTypewriter"
 
 type Props = {
   piece: ArtPiece | undefined
 }
 
 export function ArtInfo({ piece }: Props) {
+  const { displayed, done } = useTypewriter(piece?.description ?? "", 35)
+
   return (
     <div
       className={`fixed bottom-24 left-1/2 -translate-x-1/2 z-40 w-full max-w-md px-4 transition-all duration-500 ${
@@ -18,9 +21,12 @@ export function ArtInfo({ piece }: Props) {
           <h2 className="text-base font-semibold text-white/90 mb-1">
             {piece.title}
           </h2>
-          <p className="text-sm text-white/50 leading-relaxed mb-3 line-clamp-2">
-            {piece.description}
-          </p>
+          {piece.description && (
+            <p className="text-sm text-white/50 leading-relaxed mb-3 font-mono">
+              {displayed}
+              {!done && <span className="inline-block w-[2px] h-[14px] bg-white/50 ml-[1px] align-middle animate-pulse" />}
+            </p>
+          )}
           <div className="flex items-center justify-between">
             <a
               href={piece.source}

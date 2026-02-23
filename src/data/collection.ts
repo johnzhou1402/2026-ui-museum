@@ -9,12 +9,11 @@ export type ArtPiece = {
 
 export const collection: ArtPiece[] = [
   {
-    id: "stripe-checkout",
-    title: "Stripe Checkout Flow",
-    source: "https://stripe.com",
-    description:
-      "Stripe's checkout is a masterclass in reducing friction. The single-page flow with inline validation, smart defaults, and that satisfying animation on submit — every detail serves conversion.",
-    media: { type: "image", url: "/art/stripe-checkout.svg" },
+    id: "godly-website",
+    title: "Godly",
+    source: "https://godly.website",
+    description: "",
+    media: { type: "iframe", url: "https://godly.website" },
     wall: "north",
   },
   {

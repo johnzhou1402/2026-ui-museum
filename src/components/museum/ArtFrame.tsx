@@ -91,18 +91,33 @@ export function ArtFrame({ piece, onClick }: Props) {
             document.body.style.cursor = "grab"
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={piece.media.url}
-            alt={piece.title}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-            draggable={false}
-          />
+          {piece.media.type === "iframe" ? (
+            <iframe
+              src={piece.media.url}
+              title={piece.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+                pointerEvents: "none",
+              }}
+              sandbox="allow-scripts allow-same-origin"
+              loading="lazy"
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={piece.media.url}
+              alt={piece.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+              draggable={false}
+            />
+          )}
           {hovered && (
             <div
               style={{
